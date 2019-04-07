@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Anagram Engine</title>
+
+    <style type="text/css">
+
+
+
+        body{
+            background-color: azure;
+        }
+        .header {
+            background-color: darkslategrey;
+            padding: 20px;
+            text-align: center;
+         }
+        h1{
+            font: full-width;
+            color: lightcoral;
+            text-align: justify;
+            text-transform: uppercase;
+            text-shadow: 1px 1px khaki;
+            font-style: inherit;
+            font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+            display: block;
+
+            margin-left: auto;
+            margin-right: auto;
+            width: 20%;
+        }
+        ul {
+             list-style-type: none;
+             margin: 0;
+             padding: 0;
+             overflow: hidden;
+             background-color: #333;
+        }
+
+        li {
+            float: left;
+            border-right: 1px solid #bbb;
+        }
+
+        li a {
+             display: block;
+             color: white;
+             text-align: center;
+             padding: 14px 16px;
+             text-decoration: none;
+        }
+        li:last-child {
+             border-right: none;
+        }
+
+        li a:hover:not(.active) {
+             background-color: #111;
+        }
+
+        .active {
+             background-color: #4CAF50;
+        }
+
+         input[type=text] {
+              width: 35%;
+              padding: 12px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              resize: vertical;
+         }
+         input[type=date] {
+              width: 35%;
+              padding: 12px;
+              border: 1px solid #ccc;
+              border-radius: 4px;
+              resize: vertical;
+         }
+
+        label {
+          padding: 12px 12px 12px 0;
+          display: inline-block;
+        }
+
+        .container {
+          border-radius: 5px;
+          background-color: #f2f2f2;
+          padding: 20px;
+        }
+
+        .col-25 {
+          float: left;
+          width: 25%;
+          margin-top: 6px;
+        }
+
+        .col-75 {
+          float: left;
+          width: 75%;
+          margin-top: 6px;
+        }
+         .container2 {
+          display: inline;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 6px;
+          cursor: pointer;
+          font-size: 16px;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+
+        .container2 input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+
+        .checkmark {
+          position: absolute;
+          top: 10%;
+          left: 150%;
+          height: 25px;
+          width: 25px;
+          background-color: #4CAF50;
+        }
+
+
+        .container2:hover input ~ .checkmark {
+          background-color: #ccc;
+        }
+
+
+        .container2 input:checked ~ .checkmark {
+          background-color: #2196F3;
+        }
+
+
+        .checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+
+        .container2 input:checked ~ .checkmark:after {
+          display: block;
+        }
+
+
+        .container2 .checkmark:after {
+          left: 9px;
+          top: 5px;
+          width: 5px;
+          height: 10px;
+          border: solid white;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+
+
+        input[type=submit], [type=button] {
+          background-color: #4CAF50;
+          border: none;
+          color: white;
+          padding: 16px 32px;
+          text-decoration: none;
+          margin: 4px 2px;
+          cursor: pointer;
+
+        }
+
+
+        .alert {
+          padding: 20px;
+          background-color: #f44336;
+          color: white;
+        }
+
+        .closebtn {
+          margin-left: 15px;
+          color: white;
+          font-weight: bold;
+          float: right;
+          font-size: 22px;
+          line-height: 20px;
+          cursor: pointer;
+          transition: 0.3s;
+        }
+
+        .closebtn:hover {
+          color: black;
+        }
+
+
+        table {
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        th, td {
+          padding: 8px;
+          text-align: left;
+          border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {background-color:#f5f5f5;}
+
+
+
+        .link:link {
+          color: red;
+            text-decoration: none;
+        }
+
+
+        .link:visited {
+          color: green;
+        }
+
+
+        .link:hover {
+          color: hotpink;
+        }
+
+        /
+        .link:active {
+          color: blue;
+        }
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<!--header-->
+<div class="header">
+    <h1> Anagram Engine </h1> </div>
+
+<!--navigation bar-->
+<div class="topnav">
+<ul>
+  <li><a class="active" href="{{url}}">Home</a></li>
+
+
+</ul>
+</div>
+
+<!--main content --!>
+
+{% if user %}
+&nbsp;
+
+
+
+<h3>Welcome </strong> <font color="#a52a2a"> {{ user.email() }} &nbsp;&nbsp;&nbsp; </font></h3>
+
+<p align="center">To add a new word to Anagram Engine
+ <a href="/addword"><input type="button" value="Add Word" class="button"></a></center></p>
+
+<p>
+<form method="Get" style="text-align: center;">
+    <input name="input_word" type="text" value="" pattern="[a-zA-Z]*" align="center" title="[a-z,A-Z]">
+    <input type="submit" value="Search Word" name="search"/>
+
+</form>
+
+<form method="Get" style="text-align: center;" action="/subanagram">
+    <input name="input_word" type="text" value="" pattern="[a-zA-Z]*" align="center" title="[a-z,A-Z]">
+    <input type="submit" value="  Generate  " name="search" />
+    <br />
+    <br />
+</form>
+</p>
+<div class="container">
+<table class="" align="center">
+
+    <tr>
+        <th class="" colspan="6"> Words  for user : &nbsp;  {{user.email()}}</th>
+    </tr>
+    <tr>
+
+        <th >Added Words</th>
+        <th >Total Counts</th>
+        <th >Anagram length</th>
+    </tr>
+    <tr><td</td></tr>
+    <tbody>
+    {% for anagram in anagram_model %}
+
+    <tr>
+
+
+        <td>
+            {% for inputed_word in anagram.inputed_words %}
+                {{inputed_word}}
+            {% endfor %}
+        </td>
+
+        <td >{{ anagram.inputed_words_count }}</td>
+        <td>{{ anagram.word_length }}</td>
+    </tr>
+    {% endfor %}
+
+
+    </tbody>
+</table>
+
+    </p></div>
+
+{% else %}
+
+<h1 >Welcome to Anagram Engine
+
+     <br>   <a href="{{url}}"><input type="button" class="button" value="Login"></a>
+
+
+</h1>
+<center><p ><strong>You must login first to continue..!!!</strong></p></center>
+
+{% endif %}
+
+
+
+</body>
+</html>
